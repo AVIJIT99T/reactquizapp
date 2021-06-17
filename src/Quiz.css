@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn_quiz {
+  width: 100%;
+  text-align: left;
+}
+.ul_quiz li {
+  list-style-type: circle;
+  margin-left: -20px;
+  cursor: pointer;
+}
+.btn_left {
+  float: left;
+}
+.btn_right {
+  float: right;
+}
