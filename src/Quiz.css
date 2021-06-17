@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.card_quiz {
+  background-color: aquamarine;
+}
 .btn_quiz {
   width: 100%;
   text-align: left;
@@ -18,4 +20,8 @@
 }
 .btn_right {
   float: right;
+}
+.btn_right_first {
+  float: right;
+  margin-right: 5px;
 }

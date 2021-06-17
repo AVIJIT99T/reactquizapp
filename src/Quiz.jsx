@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Questions from "./Components/Questions";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+// import { withRouter } from "react-router";
 import "./Quiz.css";
+import EndQuiz from "./EndQuiz";
 
-const Quiz = (props) => {
+const Quiz = () => {
   const [currQues, setCurrQues] = useState(0);
   const [optionChose, setOptionChose] = useState("");
   const [score, setScore] = useState(0);
+  const history = useHistory();
 
   const prevQuestion = () => {
     setCurrQues(currQues - 1);
@@ -18,6 +21,20 @@ const Quiz = (props) => {
     }
     console.log(score);
     setCurrQues(currQues + 1);
+  };
+
+  // const skipQuestion = () => {
+  //   setScore(score);
+
+  //   console.log(score);
+  //   setCurrQues(currQues + 1);
+  // };
+
+  const endQuiz = () => {
+    if (Questions[currQues].answer == optionChose) {
+      setScore(score + 1);
+    }
+    console.log(score);
   };
 
   return (
@@ -91,13 +108,9 @@ const Quiz = (props) => {
                 ) : (
                   <a
                     className="btn btn-primary btn_right"
+                    onClick={endQuiz}
                     onClick={() => {
-                      props.history.push({
-                        pathname: "/end",
-                        state: {
-                          finalScore: setScore,
-                        },
-                      });
+                      history.push("/end", { finalScore: 5 });
                     }}
                   >
                     Submit
@@ -115,7 +128,16 @@ const Quiz = (props) => {
 export default Quiz;
 {
   {
-    /* <a
+    /* <NavLink
+                    className="btn btn-primary btn_right"
+                    onClick={endQuiz}
+                    to="/end"
+                  >
+                    Submit
+                  </NavLink>
+    
+    
+    <a
                     className="btn btn-primary btn_right"
                     onClick={() => {
                       props.history.push({
@@ -132,6 +154,18 @@ export default Quiz;
 
    <NavLink className="btn btn-primary btn_right" to="/end">
                     Submit
-                  </NavLink>  */
+                  </NavLink>
+                  
+                  <a
+                      className="btn btn-primary btn_right_first"
+                      onClick={skipQuestion}
+                    >
+                      Skip
+                    </a>
+                  
+                  */
   }
+}
+
+{
 }

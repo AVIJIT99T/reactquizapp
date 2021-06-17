@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import Quiz from "./Quiz";
 import EndQuiz from "./EndQuiz";
 import { BrowserRouter } from "react-router-dom";
+import AppContext from "./Components/AppContext";
 
 const App = () => {
+  const [score, setScore] = useState(0);
+
   return (
     <>
       <BrowserRouter>
