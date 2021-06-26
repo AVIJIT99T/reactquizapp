@@ -3,19 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
-.card_quiz {
+.card_quiz2 {
   background-color: aquamarine;
 }
-.btn_quiz {
+.btn_quiz2 {
   width: 100%;
   text-align: left;
   color: crimson;
   font-weight: 500;
 }
-.btn_quiz:hover {
+.btn_quiz2:hover {
   background: rgb(57, 245, 245);
 }
-.ul_quiz li {
+.ul_quiz2 li {
   list-style-type: circle;
   margin-left: -20px;
   cursor: pointer;

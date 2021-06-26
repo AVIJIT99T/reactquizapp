@@ -1,6 +1,6 @@
 const Questions = [
   {
-    question: "What is the capital of India",
+    question: "What is the capital of India?",
     optionA: "Delhi",
     optionB: "Kolkata",
     optionC: "Mumbai",
@@ -8,7 +8,7 @@ const Questions = [
     answer: "A",
   },
   {
-    question: "What is the national fruit of our country",
+    question: "What is the national fruit of our country?",
     optionA: "Apple",
     optionB: "Mango",
     optionC: "Banana",
@@ -16,15 +16,15 @@ const Questions = [
     answer: "B",
   },
   {
-    question: "In which year India become independent",
-    optionA: "1946",
-    optionB: "1978",
-    optionC: "1947",
-    optionD: "1950",
-    answer: "C",
+    question: "Who is the current president of India?",
+    optionA: "Ramnath Covind",
+    optionB: "Narendra Modi",
+    optionC: "Rajnath Singh",
+    optionD: "Amit Shah",
+    answer: "A",
   },
   {
-    question: "Which of the following is not a programming language",
+    question: "Which of the following is not a programming language?",
     optionA: "Java",
     optionB: "C++",
     optionC: "Python",

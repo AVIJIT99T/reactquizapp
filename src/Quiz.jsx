@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Questions from "./Components/Questions";
+import Questions from "./Questions";
 import { useHistory } from "react-router-dom";
 // import { withRouter } from "react-router";
 import "./Quiz.css";
-import EndQuiz from "./EndQuiz";
 
 const Quiz = () => {
   const [currQues, setCurrQues] = useState(0);
@@ -12,6 +11,7 @@ const Quiz = () => {
   const history = useHistory();
 
   const prevQuestion = () => {
+    setScore(score - 1);
     setCurrQues(currQues - 1);
   };
 
@@ -19,22 +19,27 @@ const Quiz = () => {
     if (Questions[currQues].answer == optionChose) {
       setScore(score + 1);
     }
-    console.log(score);
+    console.log("Next", score);
     setCurrQues(currQues + 1);
+    setOptionChose("");
   };
 
   // const skipQuestion = () => {
   //   setScore(score);
 
-  //   console.log(score);
+  //   console.log("Skip", score);
   //   setCurrQues(currQues + 1);
   // };
 
   const endQuiz = () => {
     if (Questions[currQues].answer == optionChose) {
       setScore(score + 1);
+      console.log("If", score);
+      history.push("/end", { finalScore: score + 1 });
+    } else {
+      console.log("Else", score);
+      history.push("/end", { finalScore: score });
     }
-    console.log(score);
   };
 
   return (
@@ -99,18 +104,19 @@ const Quiz = () => {
                 )}
 
                 {currQues != Questions.length - 1 ? (
-                  <a
-                    className="btn btn-primary btn_right"
-                    onClick={nextQuestion}
-                  >
-                    Next
-                  </a>
+                  <>
+                    <a
+                      className="btn btn-primary btn_right"
+                      onClick={nextQuestion}
+                    >
+                      Next
+                    </a>
+                  </>
                 ) : (
                   <a
                     className="btn btn-primary btn_right"
-                    onClick={endQuiz}
                     onClick={() => {
-                      history.push("/end", { finalScore: 5 });
+                      endQuiz();
                     }}
                   >
                     Submit
@@ -135,6 +141,13 @@ export default Quiz;
                   >
                     Submit
                   </NavLink>
+
+                  <a
+                      className="btn btn-primary btn_right"
+                      onClick={skipQuestion}
+                    >
+                      Skip
+                    </a>
     
     
     <a

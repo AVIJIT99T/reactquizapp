@@ -19,7 +19,7 @@ const MainPage = () => {
                   <li className="card-text">
                     This section contains 5 questions.
                   </li>
-                  <li className="card-text">The time limit is 3 minutes.</li>
+                  {/* <li className="card-text">The time limit is 3 minutes.</li> */}
                   <li className="card-text">
                     Each correct answer will carry +1 marks.
                   </li>

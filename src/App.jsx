@@ -4,20 +4,28 @@ import MainPage from "./MainPage";
 import Quiz from "./Quiz";
 import EndQuiz from "./EndQuiz";
 import { BrowserRouter } from "react-router-dom";
-import AppContext from "./Components/AppContext";
+import Main2 from "./Components/Main2";
+import Quiz2 from "./Components/Quiz2";
+import End from "./Components/End";
+import "./App.css";
 
 const App = () => {
   const [score, setScore] = useState(0);
 
   return (
     <>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/quiz" component={Quiz} />
-          <Route path="/end" component={EndQuiz} />
-        </Switch>
-      </BrowserRouter>
+      <div className="app">
+        <BrowserRouter>
+          <Switch>
+            {/* <Route exact path="/" component={MainPage} />
+            <Route path="/quiz" component={Quiz} />
+            <Route path="/end" component={EndQuiz} /> */}
+            <Route exact path="/" component={Main2} />
+            <Route path="/quiz2" component={Quiz2} />
+            <Route path="/end2" component={End} />
+          </Switch>
+        </BrowserRouter>
+      </div>
 
       {/* <MainPage /> */}
     </>

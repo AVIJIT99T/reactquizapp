@@ -1,18 +1,10 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import "./EndQuiz.css";
-import { withRouter } from "react-router";
 
-const EndQuiz = () => {
+const End = () => {
   const location = useLocation();
-  console.log("Avijit", location.state.finalScore);
-
+  console.log("Avi", location.state.finalScore);
   let showScore = location.state.finalScore;
-
-  // if (showScore > 0) {
-  //   showScore = showScore + 1;
-  // }
-  // console.log("Karati", showScore);
 
   return (
     <>
@@ -23,7 +15,7 @@ const EndQuiz = () => {
               <div className="card-body">
                 <h5 className="card-title">Congratulations!!!</h5>
                 <h6 className="card-subtitle mb-2">
-                  You have scored {showScore} / 5 marks.
+                  You have scored {showScore} / 10 marks.
                 </h6>
 
                 <NavLink className="btn btn-primary btn_end" to="/">
@@ -38,4 +30,4 @@ const EndQuiz = () => {
   );
 };
 
-export default EndQuiz;
+export default End;
