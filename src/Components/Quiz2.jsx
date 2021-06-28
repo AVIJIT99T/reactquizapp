@@ -27,8 +27,41 @@ const Quiz2 = () => {
     getQues();
   }, []);
 
+  const shuffle = (array) => {
+    let currentIndex = array.length;
+    let randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 != currentIndex) {
+      //  Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      //  And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  };
+
+  // const shuffle = (array) => {
+  //   let currentIndex = array.length,
+  //     temporaryValue,
+  //     randomIndex;
+  //   while (0 !== currentIndex) {
+  //     randomIndex = Math.floor(Math.random() * currentIndex);
+  //     currentIndex -= 1;
+  //     temporaryValue = array[currentIndex];
+  //     array[currentIndex] = array[randomIndex];
+  //     array[randomIndex] = temporaryValue;
+  //   }
+  //   return array;
+  // };
+
   const prevQuestion = () => {
-    // setScore(score - 1);
     setCurrQues(currQues - 1);
   };
 
@@ -52,37 +85,60 @@ const Quiz2 = () => {
     }
   };
 
+  let allAnswers;
+  {
+    ques != null &&
+      (allAnswers = [
+        ques[currQues].correct_answer,
+        ...ques[currQues].incorrect_answers,
+      ]);
+  }
+
+  // shuffle(allAnswers);
+  console.log(allAnswers);
+
   return (
     <>
-      {/* <>
-          <h1>Avijit</h1>
-          <h2>{ques[currQues].question}</h2>
-          {currQues != ques.length - 1 && (
-            <a className="btn btn-primary btn_right" onClick={nextQuestion}>
-              Next
-            </a>
-          )}
-        </> */}
       {ques != null && (
         <>
           <div className="container">
             <div className="row justify-content-md-center">
               <div className="col-sm-4">
-                <div className="card pt-2 p-3 m-auto mt-5 mb-4 shadow card_quiz">
+                <div className="card pt-2 p-3 m-auto mt-5 mb-4 shadow card_quiz2">
                   <div className="card-body">
                     <h5 className="card-title">Question : {currQues + 1} </h5>
-                    <h6 className="card-subtitle mb-2">
+                    <h6 className="card-subtitle mb-3">
                       {ques[currQues].question}
                     </h6>
 
-                    <ul className="ul_quiz">
+                    {allAnswers.map((ans, index) => {
+                      return (
+                        <>
+                          <ul className="ul_quiz2">
+                            <li className="card-text">
+                              <button
+                                type="button"
+                                className="btn btn-light btn_quiz2"
+                                onClick={() => {
+                                  setOptionChose(ans);
+                                }}
+                              >
+                                {ans}
+                              </button>
+                            </li>
+                          </ul>
+                        </>
+                      );
+                    })}
+
+                    {/* <ul className="ul_quiz">
                       <li className="card-text">
                         <button
                           type="button"
                           className="btn mt-1 mb-1 btn-light btn_quiz"
-                          onClick={() =>
-                            setOptionChose([ques[currQues].correct_answer])
-                          }
+                          onClick={() => {
+                            setOptionChose([ques[currQues].correct_answer]);
+                          }}
                         >
                           {ques[currQues].correct_answer}
                         </button>
@@ -126,7 +182,7 @@ const Quiz2 = () => {
                           {ques[currQues].incorrect_answers[2]}
                         </button>
                       </li>
-                    </ul>
+                    </ul> */}
                     {currQues > 0 && (
                       <a
                         className="btn btn-primary btn_left"
