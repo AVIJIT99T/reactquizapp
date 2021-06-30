@@ -15,7 +15,7 @@ const App = () => {
   return (
     <>
       <div className="app">
-        <BrowserRouter>
+        
           <Switch>
             {/* <Route exact path="/" component={MainPage} />
             <Route path="/quiz" component={Quiz} />
@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/quiz2" component={Quiz2} />
             <Route path="/end2" component={End} />
           </Switch>
-        </BrowserRouter>
+        
       </div>
 
       {/* <MainPage /> */}
