@@ -35,10 +35,12 @@ const Quiz = () => {
     if (Questions[currQues].answer == optionChose) {
       setScore(score + 1);
       console.log("If", score);
-      history.push("/end", { finalScore: score + 1 });
+      // history.push("/end", { finalScore: score + 1 });
+      history.push({ pathname: "/end", state: { finalScore: score + 1 } });
     } else {
       console.log("Else", score);
-      history.push("/end", { finalScore: score });
+      // history.push("/end", { finalScore: score });
+      history.push({ pathname: "/end", state: { finalScore: score } });
     }
   };
 

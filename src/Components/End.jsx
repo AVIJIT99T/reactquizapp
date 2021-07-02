@@ -2,8 +2,9 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 const End = () => {
-  const location = useLocation();
-  console.log("Avi", location.state.finalScore);
+  let location = useLocation();
+  console.log("Avijit", location.state.finalScore);
+  // console.log("Avi", location.state.finalScore);
   let showScore = location.state.finalScore;
 
   return (

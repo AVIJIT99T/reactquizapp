@@ -8,8 +8,9 @@ const Quiz2 = () => {
   const [ques, setQues] = useState();
   const [currQues, setCurrQues] = useState(0);
   const [optionChose, setOptionChose] = useState("");
+  const [options, setOptions] = useState();
   const [score, setScore] = useState(0);
-  const history = useHistory();
+  let history = useHistory();
 
   const getQues = async () => {
     try {
@@ -23,43 +24,41 @@ const Quiz2 = () => {
     }
   };
 
+  // let [backgroundColor, setBackgroundColor] = useState("lightblue");
+
   useEffect(() => {
     getQues();
   }, []);
 
-  const shuffle = (array) => {
-    let currentIndex = array.length;
-    let randomIndex;
+  useEffect(() => {
+    let allAnswers;
 
-    // While there remain elements to shuffle...
-    while (0 != currentIndex) {
-      //  Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      //  And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
+    if (ques != null) {
+      allAnswers = [
+        ques[currQues].correct_answer,
+        ...ques[currQues].incorrect_answers,
       ];
+      setOptions(shuffle(allAnswers));
     }
+  }, [currQues, ques]);
 
+  useEffect(() => {
+    alert(`You pressed an option`);
+  }, [optionChose]);
+
+  const shuffle = (array) => {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
     return array;
   };
-
-  // const shuffle = (array) => {
-  //   let currentIndex = array.length,
-  //     temporaryValue,
-  //     randomIndex;
-  //   while (0 !== currentIndex) {
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex -= 1;
-  //     temporaryValue = array[currentIndex];
-  //     array[currentIndex] = array[randomIndex];
-  //     array[randomIndex] = temporaryValue;
-  //   }
-  //   return array;
-  // };
 
   const prevQuestion = () => {
     setCurrQues(currQues - 1);
@@ -78,24 +77,12 @@ const Quiz2 = () => {
     if (ques[currQues].correct_answer == optionChose) {
       setScore(score + 1);
       console.log("If", score);
-      history.push("/end2", { finalScore: score + 1 });
+      history.push({ pathname: "/end2", state: { finalScore: score + 1 } });
     } else {
       console.log("Else", score);
-      history.push("/end2", { finalScore: score });
+      history.push({ pathname: "/end2", state: { finalScore: score } });
     }
   };
-
-  let allAnswers;
-  {
-    ques != null &&
-      (allAnswers = [
-        ques[currQues].correct_answer,
-        ...ques[currQues].incorrect_answers,
-      ]);
-  }
-
-  // shuffle(allAnswers);
-  console.log(allAnswers);
 
   return (
     <>
@@ -111,25 +98,28 @@ const Quiz2 = () => {
                       {ques[currQues].question}
                     </h6>
 
-                    {allAnswers.map((ans, index) => {
-                      return (
-                        <>
-                          <ul className="ul_quiz2">
-                            <li className="card-text">
-                              <button
-                                type="button"
-                                className="btn btn-light btn_quiz2"
-                                onClick={() => {
-                                  setOptionChose(ans);
-                                }}
-                              >
-                                {ans}
-                              </button>
-                            </li>
-                          </ul>
-                        </>
-                      );
-                    })}
+                    {options != null &&
+                      options.map((ans, index) => {
+                        return (
+                          <>
+                            <ul className="ul_quiz2">
+                              <li className="card-text">
+                                <button
+                                  type="button"
+                                  // style={{ backgroundColor: backgroundColor }}
+                                  className="btn btn-light btn_quiz2"
+                                  onClick={() => {
+                                    setOptionChose(ans);
+                                    // changeBackgroundColor();
+                                  }}
+                                >
+                                  {ans}
+                                </button>
+                              </li>
+                            </ul>
+                          </>
+                        );
+                      })}
 
                     {/* <ul className="ul_quiz">
                       <li className="card-text">
